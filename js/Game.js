@@ -1,7 +1,7 @@
 class Game {
     constructor() {
-        this.lvl = new Level().getLvl()
-        this.interval = 1000 / this.lvl
+        this.lvl = new Level().getLevel()
+        this.interval = 900 / this.lvl
     }
     start() {
         this.balls = []
@@ -12,7 +12,9 @@ class Game {
     gameOver() {
         new Level().Zero()
         clearInterval(this.intervalStart)
-        this.balls.forEach(el => el.destroy())
+        this.balls.forEach((Ball) => {
+            Ball.destroyBall();
+        })
 
     }
 }

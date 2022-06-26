@@ -1,18 +1,18 @@
-let lvl = 1
+let level = 1
 class Level {
     constructor() {
-        this.lvl = lvl
+        this.level = level
         this.p = document.querySelector("p")
     }
     addCount() {
-        lvl++
-        this.p.innerHTML = lvl - 1
+        level++
+        this.p.innerHTML = level - 1
     }
     Zero() {
-        lvl = 1
+        level = 1
         this.p.innerHTML = 0
     }
-    getLvl() {
-        return this.lvl
+    getLevel() {
+        return this.level
     }
 }

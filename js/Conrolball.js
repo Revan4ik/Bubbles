@@ -1,33 +1,24 @@
 class Controlball {
     constructor() {
-        this.lvl = new Level().getLvl()
-        this.size = 100 / Number(`1.${this.lvl}`)
-        this.speed = 2 * this.lvl
-        this.interval = 50
+        this.lvl = new Level().getLevel()
+        this.size = 140 / Number(`1.${this.lvl}`)
+        this.speed = 1 * this.lvl
+        this.interval = 40
         this.count = 0
     }
-    init() {
-        this.generateBall()
-        this.move()
-        return this.ball
-    }
-    generateBall() {
+    generatetheBall() {
         this.ball = new Ball(this.generateX(), this.size)
         this.ball.addEventListener('click', () => {
             this.lvl = new Level().addCount()
             this.destroy()
         })
     }
-    generateX() {
-        this.num = Math.ceil(Math.random() * window.innerWidth) - this.size
-        while (this.num < 0) this.num = Math.ceil(Math.random() * window.innerWidth) - this.size
-        return this.num
+    init() {
+        this.generatetheBall()
+        this.moving()
+        return this
     }
-    destroy() {
-        this.ball.remove()
-        delete this
-    }
-    move() {
+    moving() {
         let y = 0
         this.moveInterval = setInterval(() => {
             y += this.speed
@@ -39,4 +30,15 @@ class Controlball {
             }
         }, this.interval)
     }
+    generateX() {
+        this.num = Math.ceil(Math.random() * window.innerWidth) - this.size
+        while (this.num < 0) this.num = Math.ceil(Math.random() * window.innerWidth) - this.size
+        return this.num
+    }
+    destroy() {
+        this.ball.remove();
+        clearInterval(this.moveInterval);
+        delete this;
+    }
+    
 }
